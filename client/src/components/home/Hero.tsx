@@ -2,43 +2,42 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="bg-background pt-24 pb-16 md:pt-32 md:pb-24 border-b border-border">
-      <div className="px-4 lg:px-8 max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          
-          <div className="lg:col-span-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-foreground mb-8 leading-tight tracking-tight">
-              Solving the world's most complex problems with <span className="text-primary">Quantum AI</span>.
+    <section className="bg-background pt-12 pb-16 lg:pt-24 lg:pb-32 border-b border-gray-200">
+      <div className="ibm-container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          <div className="lg:col-span-8 space-y-8">
+            <h1 className="text-foreground font-light leading-tight">
+              Integrating <span className="font-normal text-primary">Quantum Intelligence</span> into critical infrastructure.
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl font-light leading-relaxed">
-              QuantaFONS integrates generative AI, quantum computing, and biometrics to build smarter infrastructure, secure enterprises, and advance medical research.
+            <p className="text-xl lg:text-2xl text-muted-foreground font-light max-w-3xl leading-relaxed">
+              QuantaFONS delivers enterprise-grade AI security, biometrics, and structural health monitoring solutions powered by our proprietary Eli S1 model.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="h-12 px-6 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-between gap-4 min-w-[200px] group">
-                <span>View our solutions</span>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <button className="ibm-btn-primary group">
+                <span>View products</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="h-12 px-6 border border-foreground/30 text-foreground text-sm font-medium hover:bg-secondary transition-colors min-w-[200px]">
-                Read the 2025 AI Report
+              <button className="ibm-btn-secondary group">
+                <span>Contact sales</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-end">
-            <div className="bg-secondary p-8 h-full min-h-[300px] flex flex-col justify-between">
+            <div className="bg-secondary p-6 h-full flex flex-col justify-between min-h-[240px]">
               <div>
-                <h3 className="text-lg font-bold mb-2">Latest Innovation</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Introducing the Compact Quantum Processor for commercial applications.
+                <h3 className="text-lg font-medium mb-3">Featured Innovation</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                  Compact Quantum Processors: A breakthrough in room-temperature quantum computing for edge devices.
                 </p>
               </div>
-              <a href="#projects" className="text-primary hover:underline text-sm font-medium flex items-center gap-1">
-                Learn more <ArrowRight className="w-3 h-3" />
+              <a href="#projects" className="ibm-link">
+                Read the technical paper <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
