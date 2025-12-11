@@ -19,7 +19,7 @@ export default function ProductsPage() {
           {products.map((product) => (
             <div key={product.id} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start group">
               <div className="lg:col-span-5 order-2 lg:order-1">
-                <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100 relative">
+                <div className="aspect-[3/2] w-full overflow-hidden bg-gray-100 relative">
                   <img 
                     src={product.image} 
                     alt={product.name} 

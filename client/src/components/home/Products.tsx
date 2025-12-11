@@ -12,7 +12,7 @@ export default function Products() {
           {products.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`}>
               <div className="group flex flex-col h-full hover:bg-secondary transition-colors cursor-pointer">
-                <div className="aspect-[16/9] w-full overflow-hidden bg-gray-100">
+                <div className="aspect-[3/2] w-full overflow-hidden bg-gray-100">
                   <img 
                     src={product.image} 
                     alt={product.name} 

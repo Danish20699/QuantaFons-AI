@@ -33,7 +33,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="w-full h-[400px] lg:h-[500px] bg-gray-100 mb-16 overflow-hidden">
+        <div className="w-full aspect-[21/9] bg-gray-100 mb-16 overflow-hidden">
           <img 
             src={product.image} 
             alt={product.name} 

@@ -34,7 +34,7 @@ export default function Projects() {
                      </span>
                   </div>
                   <div className="lg:col-span-8 order-1 lg:order-2 px-4 lg:px-0">
-                    <div className="aspect-[2/1] w-full overflow-hidden bg-gray-200">
+                    <div className="aspect-[21/9] w-full overflow-hidden bg-gray-200">
                       <img 
                         src={project.image} 
                         alt={project.name} 

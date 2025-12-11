@@ -1,11 +1,11 @@
 import { Shield, ScanFace, Brain, Activity, HardHat, Cpu, Satellite, FileText, Users, Globe } from "lucide-react";
-import qSecureImg from "@assets/generated_images/q-secure_ai_camera.png";
-import qIdImg from "@assets/generated_images/q-id_attendance_system.png";
-import quantafonsAiImg from "@assets/generated_images/quantafons_ai_model.png";
-import cancerResearchImg from "@assets/generated_images/cancer_research_ai.png";
-import qBuildImg from "@assets/generated_images/q-build_construction_ai.png";
-import processorImg from "@assets/generated_images/compact_quantum_processor.png";
-import spacecraftImg from "@assets/generated_images/spacecraft_monitoring.png";
+import qSecureImg from "@assets/stock_images/modern_cctv_security_f7448f49.jpg";
+import qIdImg from "@assets/stock_images/facial_recognition_s_415500cb.jpg";
+import quantafonsAiImg from "@assets/stock_images/abstract_data_networ_7d12e022.jpg";
+import cancerResearchImg from "@assets/stock_images/medical_laboratory_m_ce3d03b3.jpg";
+import qBuildImg from "@assets/stock_images/modern_construction__a0a3d1ca.jpg";
+import processorImg from "@assets/stock_images/computer_processor_c_94aac89b.jpg";
+import spacecraftImg from "@assets/stock_images/satellite_in_orbit_c_9dcf5d6d.jpg";
 
 export const products = [
   {
