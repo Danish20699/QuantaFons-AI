@@ -132,17 +132,20 @@
   .flowing-text {
     background: linear-gradient(
       90deg,
-      #0f62fe,
-      #a56eff,
+      #da1e28,
+      #ff832b,
+      #f1c21b,
+      #42be65,
       #08bdba,
       #0f62fe,
-      #a56eff
+      #a56eff,
+      #da1e28
     );
-    background-size: 300% 100%;
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: flow 4s ease-in-out infinite;
+    animation: flow 6s linear infinite;
   }
   
   @keyframes flow {
