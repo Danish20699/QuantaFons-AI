@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-8 space-y-8">
             <h1 className="text-foreground font-light leading-tight">
-              Integrating <span className="font-normal text-primary">Quantum Intelligence</span> into critical infrastructure.
+              Integrating <span className="font-normal flowing-text">Quantum Intelligence</span> into critical infrastructure.
             </h1>
             <p className="text-xl lg:text-2xl text-muted-foreground font-light max-w-3xl leading-relaxed">
               QuantaFONS delivers enterprise-grade AI security, biometrics, and structural health monitoring solutions powered by our proprietary Eli S1 model.
