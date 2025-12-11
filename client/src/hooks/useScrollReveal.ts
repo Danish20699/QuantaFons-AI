@@ -18,12 +18,18 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
         }
       },
       {
-        threshold: options.threshold ?? 0.1,
-        rootMargin: options.rootMargin ?? '0px 0px -50px 0px',
+        threshold: options.threshold ?? 0.05,
+        rootMargin: options.rootMargin ?? '50px 0px 0px 0px',
       }
     );
 
     observer.observe(element);
+
+    // Trigger immediately if element is already in view
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+    }
 
     return () => observer.disconnect();
   }, [options.threshold, options.rootMargin]);
