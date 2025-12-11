@@ -1,8 +1,44 @@
 import { Link } from "wouter";
 import { FileText, Download } from "lucide-react";
-import { researchPapers } from "@/lib/data";
+import { useState, useEffect } from "react";
+
+type ResearchPaper = {
+  id: string;
+  title: string;
+  authors: string;
+  date: string;
+  journal: string;
+  abstract: string;
+};
 
 export default function Research() {
+  const [researchPapers, setResearchPapers] = useState<ResearchPaper[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchResearchPapers() {
+      try {
+        const response = await fetch("/api/research");
+        const data = await response.json();
+        setResearchPapers(data);
+      } catch (error) {
+        console.error("Failed to fetch research papers:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchResearchPapers();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-xl text-muted-foreground">Loading research...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
       <div className="ibm-container">

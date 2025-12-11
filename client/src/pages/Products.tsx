@@ -1,8 +1,56 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { products } from "@/lib/data";
+import { useState, useEffect } from "react";
+import { getIcon } from "@/lib/icon-map";
+
+type Product = {
+  id: string;
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;
+  image: string;
+  icon: string;
+  specs: Array<{ label: string; value: string }>;
+};
 
 export default function ProductsPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        
+        const productsWithSpecs = await Promise.all(
+          data.map(async (product: any) => {
+            const detailResponse = await fetch(`/api/products/${product.id}`);
+            const detail = await detailResponse.json();
+            return detail;
+          })
+        );
+        
+        setProducts(productsWithSpecs);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-xl text-muted-foreground">Loading products...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
       <div className="ibm-container">
@@ -16,7 +64,9 @@ export default function ProductsPage() {
         </div>
 
         <div className="grid grid-cols-1 gap-16">
-          {products.map((product) => (
+          {products.map((product) => {
+            const Icon = getIcon(product.icon);
+            return (
             <div key={product.id} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start group">
               <div className="lg:col-span-5 order-2 lg:order-1">
                 <div className="aspect-[3/2] w-full overflow-hidden bg-gray-100 relative">
@@ -31,7 +81,7 @@ export default function ProductsPage() {
               
               <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col h-full justify-center">
                 <div className="flex items-center gap-2 mb-4">
-                  <product.icon className="w-5 h-5 text-primary" />
+                  <Icon className="w-5 h-5 text-primary" />
                   <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground">{product.category}</span>
                 </div>
                 
@@ -64,7 +114,8 @@ export default function ProductsPage() {
                 </Link>
               </div>
             </div>
-          ))}
+          );
+          })}
         </div>
       </div>
     </div>

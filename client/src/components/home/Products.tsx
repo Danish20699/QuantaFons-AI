@@ -1,8 +1,32 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { products } from "@/lib/data";
+import { useState, useEffect } from "react";
+
+type Product = {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+};
 
 export default function Products() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    }
+    
+    fetchProducts();
+  }, []);
+
   return (
     <section id="products" className="bg-background py-16 lg:py-24 border-b border-gray-200">
       <div className="ibm-container">

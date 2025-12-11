@@ -1,8 +1,55 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { projects } from "@/lib/data";
+import { useState, useEffect } from "react";
+import { getIcon } from "@/lib/icon-map";
+
+type Project = {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+  icon: string;
+  stats: Array<{ label: string; value: string }>;
+};
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const response = await fetch("/api/projects");
+        const data = await response.json();
+        
+        const projectsWithStats = await Promise.all(
+          data.map(async (project: any) => {
+            const detailResponse = await fetch(`/api/projects/${project.id}`);
+            const detail = await detailResponse.json();
+            return detail;
+          })
+        );
+        
+        setProjects(projectsWithStats);
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-xl text-muted-foreground">Loading projects...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
       <div className="ibm-container">
@@ -15,7 +62,9 @@ export default function ProjectsPage() {
         </div>
 
         <div className="space-y-12">
-          {projects.map((project, index) => (
+          {projects.map((project, index) => {
+            const Icon = getIcon(project.icon);
+            return (
             <div key={project.id} className="border border-gray-200 hover:border-primary transition-colors bg-white group">
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 <div className="lg:col-span-5 h-64 lg:h-auto overflow-hidden bg-gray-100">
@@ -27,7 +76,7 @@ export default function ProjectsPage() {
                 </div>
                 <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-4">
-                    <project.icon className="w-5 h-5 text-primary" />
+                    <Icon className="w-5 h-5 text-primary" />
                     <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground">{project.category}</span>
                   </div>
                   
@@ -56,7 +105,8 @@ export default function ProjectsPage() {
                 </div>
               </div>
             </div>
-          ))}
+          );
+          })}
         </div>
       </div>
     </div>

@@ -1,13 +1,58 @@
 import { Link, useRoute } from "wouter";
 import { ArrowLeft, Check, Download } from "lucide-react";
-import { products } from "@/lib/data";
+import { useState, useEffect } from "react";
 import NotFound from "./not-found";
+
+type Product = {
+  id: string;
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;
+  image: string;
+  icon: string;
+  specs: Array<{ label: string; value: string }>;
+  features: Array<{ feature: string }>;
+};
 
 export default function ProductDetail() {
   const [, params] = useRoute("/products/:id");
-  const product = products.find(p => p.id === params?.id);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-  if (!product) return <NotFound />;
+  useEffect(() => {
+    async function fetchProduct() {
+      if (!params?.id) return;
+      
+      try {
+        const response = await fetch(`/api/products/${params.id}`);
+        if (!response.ok) {
+          setNotFound(true);
+          return;
+        }
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchProduct();
+  }, [params?.id]);
+
+  if (loading) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-xl text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
+  if (notFound || !product) return <NotFound />;
 
   return (
     <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
@@ -57,13 +102,13 @@ export default function ProductDetail() {
           <div className="lg:col-span-8">
              <h3 className="text-xl font-bold mb-6 border-t-2 border-gray-200 pt-4">Key Capabilities</h3>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               {product.features.map((feature, i) => (
+               {product.features.map((item, i) => (
                  <div key={i} className="flex items-start gap-4">
                    <div className="bg-primary/10 p-2 rounded-full mt-1">
                      <Check className="w-4 h-4 text-primary" />
                    </div>
                    <div>
-                     <p className="font-medium text-lg">{feature}</p>
+                     <p className="font-medium text-lg">{item.feature}</p>
                      <p className="text-muted-foreground text-sm mt-1">
                        Engineered for high-availability environments and mission-critical workflows.
                      </p>

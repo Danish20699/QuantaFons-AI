@@ -1,8 +1,32 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { projects } from "@/lib/data";
+import { useState, useEffect } from "react";
+
+type Project = {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+};
 
 export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const response = await fetch("/api/projects");
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      }
+    }
+    
+    fetchProjects();
+  }, []);
+
   return (
     <section id="projects" className="bg-secondary py-16 lg:py-24">
       <div className="ibm-container">

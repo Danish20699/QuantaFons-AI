@@ -1,13 +1,56 @@
 import { Link, useRoute } from "wouter";
 import { ArrowLeft, FileText, Share2 } from "lucide-react";
-import { projects } from "@/lib/data";
+import { useState, useEffect } from "react";
 import NotFound from "./not-found";
+
+type Project = {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+  icon: string;
+  stats: Array<{ label: string; value: string }>;
+};
 
 export default function ProjectDetail() {
   const [, params] = useRoute("/projects/:id");
-  const project = projects.find(p => p.id === params?.id);
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-  if (!project) return <NotFound />;
+  useEffect(() => {
+    async function fetchProject() {
+      if (!params?.id) return;
+      
+      try {
+        const response = await fetch(`/api/projects/${params.id}`);
+        if (!response.ok) {
+          setNotFound(true);
+          return;
+        }
+        const data = await response.json();
+        setProject(data);
+      } catch (error) {
+        console.error("Failed to fetch project:", error);
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchProject();
+  }, [params?.id]);
+
+  if (loading) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-xl text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
+  if (notFound || !project) return <NotFound />;
 
   return (
     <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
