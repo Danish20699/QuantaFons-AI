@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 export default function Footer() {
   return (
     <footer className="bg-secondary border-t border-gray-300 pt-16 pb-8 text-sm">
@@ -6,7 +8,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1">
             <h4 className="font-semibold mb-4 text-foreground">QuantaFONS</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Contact</a></li>
+              <li><Link href="/contact"><span className="text-foreground/70 hover:text-primary hover:underline cursor-pointer">Contact</span></Link></li>
               <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Privacy</a></li>
               <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Terms of use</a></li>
               <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Accessibility</a></li>
@@ -16,10 +18,10 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1">
             <h4 className="font-semibold mb-4 text-foreground">Products</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Q-Secure</a></li>
-              <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Q-ID</a></li>
-              <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Eli S1 Model</a></li>
-              <li><a href="#" className="text-foreground/70 hover:text-primary hover:underline">Q-Build</a></li>
+              <li><Link href="/products/q-secure"><span className="text-foreground/70 hover:text-primary hover:underline cursor-pointer">Q-Secure</span></Link></li>
+              <li><Link href="/products/q-id"><span className="text-foreground/70 hover:text-primary hover:underline cursor-pointer">Q-ID</span></Link></li>
+              <li><Link href="/products/eli-s1"><span className="text-foreground/70 hover:text-primary hover:underline cursor-pointer">Eli S1 Model</span></Link></li>
+              <li><Link href="/projects/q-build"><span className="text-foreground/70 hover:text-primary hover:underline cursor-pointer">Q-Build</span></Link></li>
             </ul>
           </div>
 

@@ -1,25 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, X, Globe, User, Search, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [location] = useLocation();
 
   const navLinks = [
-    { name: "Products", href: "#products" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Consulting", href: "#consulting" },
-    { name: "Support", href: "#support" },
-    { name: "More", href: "#more" },
+    { name: "Products", href: "/products" },
+    { name: "Projects", href: "/projects" },
+    { name: "Research", href: "/research" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -33,20 +24,25 @@ export default function Navbar() {
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          <Link href="/" className="flex items-center gap-2 text-foreground mr-8 h-full">
-            <span className="font-semibold text-lg tracking-tight">QuantaFONS</span>
+          <Link href="/">
+            <span className="flex items-center gap-2 text-foreground mr-8 h-full cursor-pointer font-semibold text-lg tracking-tight">
+              QuantaFONS
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center h-full gap-6">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm text-foreground/80 hover:text-foreground h-full flex items-center border-b-2 border-transparent hover:border-primary transition-colors px-1"
-              >
-                {link.name}
-                {link.name === "More" && <ChevronDown className="w-3 h-3 ml-1" />}
-              </a>
+              <Link key={link.name} href={link.href}>
+                <span 
+                  className={`text-sm h-full flex items-center border-b-2 transition-colors px-1 cursor-pointer ${
+                    location === link.href 
+                      ? "text-foreground border-primary font-medium" 
+                      : "text-foreground/80 hover:text-foreground border-transparent hover:border-primary"
+                  }`}
+                >
+                  {link.name}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -69,17 +65,21 @@ export default function Navbar() {
         <div className="fixed inset-0 top-12 bg-white z-40 lg:hidden overflow-y-auto">
           <div className="flex flex-col p-4">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="py-4 text-lg text-foreground border-b border-gray-100"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </a>
+              <Link key={link.name} href={link.href}>
+                <span 
+                  className="block py-4 text-lg text-foreground border-b border-gray-100 cursor-pointer"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </span>
+              </Link>
             ))}
             <div className="mt-8 space-y-4">
-               <a href="#" className="block py-2 text-sm text-foreground">Contact Sales</a>
+               <Link href="/contact">
+                 <span className="block py-2 text-sm text-foreground cursor-pointer" onClick={() => setIsOpen(false)}>
+                   Contact Sales
+                 </span>
+               </Link>
                <a href="#" className="block py-2 text-sm text-foreground">Log in</a>
             </div>
           </div>

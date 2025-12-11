@@ -7,13 +7,13 @@ import Footer from "@/components/layout/Footer";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <Navbar />
+      {/* Navbar is now in App.tsx layout */}
       <main>
         <Hero />
         <Products />
         <Projects />
       </main>
-      <Footer />
+      {/* Footer is now in App.tsx layout */}
     </div>
   );
 }

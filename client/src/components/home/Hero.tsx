@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
@@ -14,14 +15,18 @@ export default function Hero() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="ibm-btn-primary group">
-                <span>View products</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="ibm-btn-secondary group">
-                <span>Contact sales</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link href="/products">
+                <button className="ibm-btn-primary group">
+                  <span>View products</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
+              <Link href="/contact">
+                <button className="ibm-btn-secondary group">
+                  <span>Contact sales</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -33,9 +38,11 @@ export default function Hero() {
                   Compact Quantum Processors: A breakthrough in room-temperature quantum computing for edge devices.
                 </p>
               </div>
-              <a href="#projects" className="ibm-link">
-                Read the technical paper <ArrowRight className="w-4 h-4" />
-              </a>
+              <Link href="/projects/quantum-processors">
+                <span className="ibm-link cursor-pointer">
+                  Read the technical paper <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
             </div>
           </div>
         </div>
