@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { FileText, Download } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 type ResearchPaper = {
   id: string;
@@ -14,6 +15,7 @@ type ResearchPaper = {
 export default function Research() {
   const [researchPapers, setResearchPapers] = useState<ResearchPaper[]>([]);
   const [loading, setLoading] = useState(true);
+  const { ref: sectionRef, isVisible } = useScrollReveal();
 
   useEffect(() => {
     async function fetchResearchPapers() {
@@ -33,16 +35,44 @@ export default function Research() {
 
   if (loading) {
     return (
-      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground flex items-center justify-center">
-        <div className="text-xl text-muted-foreground">Loading research...</div>
+      <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
+        <div className="ibm-container">
+          <div className="mb-16 border-b border-gray-200 pb-8">
+            <div className="h-4 w-32 skeleton mb-4"></div>
+            <div className="h-14 w-3/4 skeleton mb-6"></div>
+            <div className="h-6 w-2/3 skeleton"></div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-8 space-y-8">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="border-b border-gray-200 pb-8 space-y-4">
+                  <div className="flex gap-4">
+                    <div className="h-4 w-24 skeleton"></div>
+                    <div className="h-4 w-16 skeleton"></div>
+                    <div className="h-4 w-32 skeleton"></div>
+                  </div>
+                  <div className="h-8 w-3/4 skeleton"></div>
+                  <div className="h-16 w-full skeleton"></div>
+                  <div className="flex gap-4">
+                    <div className="h-4 w-24 skeleton"></div>
+                    <div className="h-4 w-16 skeleton"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="lg:col-span-4">
+              <div className="h-64 skeleton"></div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="pt-24 pb-16 min-h-screen bg-background text-foreground">
-      <div className="ibm-container">
-        <div className="mb-16 border-b border-gray-200 pb-8">
+    <div className="pt-24 pb-16 min-h-screen bg-background text-foreground hi-tech-grid overflow-hidden">
+      <div className="ibm-container relative" ref={sectionRef}>
+        <div className={`mb-16 border-b border-gray-200 pb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h6 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Scientific Publications</h6>
           <h1 className="font-light text-5xl lg:text-6xl mb-6">Research & Insights</h1>
           <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
@@ -53,8 +83,13 @@ export default function Research() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <div className="lg:col-span-8">
              <div className="space-y-8">
-               {researchPapers.map((paper) => (
-                 <div key={paper.id} className="border-b border-gray-200 pb-8 last:border-0">
+               {researchPapers.map((paper, index) => (
+                 <div 
+                   key={paper.id} 
+                   className={`border-b border-gray-200 pb-8 last:border-0 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                   style={{ transitionDelay: `${index * 100 + 200}ms` }}
+                   data-testid={`paper-${paper.id}`}
+                 >
                    <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-muted-foreground mb-3">
                      <span className="font-bold text-primary uppercase tracking-wider">{paper.journal}</span>
                      <span className="hidden md:inline">•</span>
@@ -81,8 +116,8 @@ export default function Research() {
              </div>
           </div>
 
-          <div className="lg:col-span-4">
-            <div className="bg-secondary p-8 border border-gray-200 sticky top-32">
+          <div className={`lg:col-span-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`} style={{ transitionDelay: '400ms' }}>
+            <div className="bg-secondary p-8 border border-gray-200 sticky top-32 hi-tech-card glow-on-hover">
               <h3 className="text-xl font-medium mb-6">Research Areas</h3>
               <ul className="space-y-3">
                 {["Quantum Computing", "Generative AI", "Oncology", "Structural Engineering", "Cryptography"].map((area, i) => (
