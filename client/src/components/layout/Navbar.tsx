@@ -1,95 +1,78 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
-import { Menu, X, Brain } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Brain, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { name: "Products", href: "#products" },
-    { name: "Projects", href: "#projects" },
+    { name: "Solutions", href: "#solutions" },
     { name: "Research", href: "#research" },
-    { name: "Contact", href: "#contact" },
+    { name: "Consulting", href: "#consulting" },
+    { name: "About", href: "#about" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-md border-b border-white/10 py-4" : "bg-transparent py-6"
-      }`}
-    >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-          <div className="bg-primary/20 p-2 rounded-lg group-hover:bg-primary/30 transition-colors">
-            <Brain className="w-8 h-8 text-primary" />
-          </div>
-          <span className="text-2xl font-bold font-heading tracking-tight text-white">
-            Quanta<span className="text-primary">FONS</span>
-          </span>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border h-12 flex items-center">
+      <div className="w-full px-4 lg:px-8 flex items-center justify-between h-full">
+        <Link href="/" className="flex items-center gap-2 text-foreground hover:opacity-80 transition-opacity">
+          <Brain className="w-5 h-5" />
+          <span className="text-sm font-bold tracking-wide uppercase">QuantaFONS</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center h-full">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-white/80 hover:text-primary transition-colors uppercase tracking-widest"
+              className="h-full flex items-center px-6 text-sm text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors border-l border-transparent hover:border-border"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="px-6 py-2 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+            className="h-full flex items-center px-6 text-sm font-bold bg-primary text-white hover:bg-primary/90 transition-colors ml-4"
           >
-            Get in Touch
+            Contact Sales
           </a>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-foreground p-2"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X /> : <Menu />}
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {/* Mobile Nav */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-white/10"
-          >
-            <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg font-medium text-white/80 hover:text-primary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <div className="absolute top-12 left-0 w-full bg-background border-b border-border shadow-lg md:hidden">
+          <div className="flex flex-col">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-4 py-3 text-sm text-foreground hover:bg-secondary border-b border-border/50"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              className="px-4 py-3 text-sm font-bold text-primary hover:bg-secondary"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact Sales
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

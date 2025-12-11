@@ -1,112 +1,90 @@
-import { motion } from "framer-motion";
-import { HardHat, Cpu, Satellite } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import qBuildImg from "@assets/generated_images/q-build_construction_ai.png";
 import processorImg from "@assets/generated_images/compact_quantum_processor.png";
 import spacecraftImg from "@assets/generated_images/spacecraft_monitoring.png";
 
 const projects = [
   {
-    id: 1,
-    title: "Q-Build",
-    subtitle: "Buildmore AI",
-    description: "A full-fledged AI-based construction management and analysis system optimizing workflow and safety.",
+    title: "Buildmore AI (Q-Build)",
+    subtitle: "Construction Management",
+    description: "A comprehensive AI ecosystem for the construction industry. Q-Build integrates IoT sensors, drone mapping, and predictive analytics to manage large-scale infrastructure projects.",
+    stats: [
+      { label: "Efficiency Gain", value: "35%" },
+      { label: "Safety Incidents", value: "-90%" },
+      { label: "Cost Reduction", value: "15%" },
+    ],
     image: qBuildImg,
-    icon: HardHat,
-    features: ["Project Tracking", "Safety Analysis", "Resource Optimization"],
   },
   {
-    id: 2,
-    title: "Quantum Processors",
-    subtitle: "Next-Gen Hardware",
-    description: "Compact Quantum Processors designed for high-performance computing at a fraction of the size.",
+    title: "Compact Quantum Processors",
+    subtitle: "Hardware Innovation",
+    description: "Revolutionizing computing power with room-temperature quantum processors. Designed for edge deployment, bringing quantum capabilities to mobile and embedded systems.",
+    stats: [
+      { label: "Qubits", value: "128" },
+      { label: "Coherence Time", value: "10ms" },
+      { label: "Temp. Req", value: "295K" },
+    ],
     image: processorImg,
-    icon: Cpu,
-    features: ["Qubit Stability", "Compact Form Factor", "High Efficiency"],
   },
   {
-    id: 3,
-    title: "Spacecraft SHM",
-    subtitle: "Structural Health Monitoring",
-    description: "Using femtotesla magnetic waves and tomography for structural health monitoring of spacecrafts at a quantum level.",
+    title: "Spacecraft Structural Health",
+    subtitle: "Aerospace Engineering",
+    description: "Femtotesla magnetic wave tomography for non-invasive structural analysis of spacecraft hulls. Detects micro-fractures and material fatigue in deep space environments.",
+    stats: [
+      { label: "Sensitivity", value: "0.1fT" },
+      { label: "Scan Depth", value: "50cm" },
+      { label: "Resolution", value: "10nm" },
+    ],
     image: spacecraftImg,
-    icon: Satellite,
-    features: ["Femtotesla Sensitivity", "Tomography Scan", "Deep Space Durable"],
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 bg-black relative overflow-hidden">
-      {/* Abstract Background Elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-full bg-purple-900/10 blur-[120px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <section id="projects" className="py-24 bg-background">
+      <div className="px-4 lg:px-8 max-w-[1600px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-border pb-8">
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mb-4">
-              Featured Projects
-            </h2>
-            <p className="text-muted-foreground max-w-xl">
-              Pushing the boundaries of what's possible with Quantum mechanics and Artificial Intelligence.
+            <h2 className="text-3xl md:text-4xl font-medium mb-4">Strategic Projects</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Pioneering research and development initiatives shaping the next decade.
             </p>
           </div>
-          <button className="text-primary font-medium hover:text-primary/80 transition-colors flex items-center gap-2">
-            View All Projects &rarr;
+          <button className="hidden md:flex h-12 px-6 border border-foreground/30 text-foreground text-sm font-medium hover:bg-secondary transition-colors items-center">
+            View All R&D
           </button>
         </div>
 
-        <div className="space-y-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className={`flex flex-col ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } gap-12 items-center`}
-            >
-              <div className="flex-1 w-full">
-                <div className="relative group rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                  <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none mix-blend-overlay" />
-                  <img 
+            <div key={index} className="flex flex-col h-full bg-secondary hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-border p-6 group">
+              <div className="mb-6 aspect-[4/3] overflow-hidden bg-white">
+                 <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
-                </div>
               </div>
-
-              <div className="flex-1 space-y-6">
-                <div className="flex items-center gap-3 text-primary mb-2">
-                  <project.icon className="w-6 h-6" />
-                  <span className="font-mono text-sm tracking-widest uppercase">{project.subtitle}</span>
-                </div>
-                
-                <h3 className="text-4xl font-bold text-white">{project.title}</h3>
-                
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              
+              <div className="mb-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-primary mb-2 block">{project.subtitle}</span>
+                <h3 className="text-xl font-bold text-foreground mb-3">{project.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                   {project.description}
                 </p>
+              </div>
 
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                  {project.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {feature}
-                    </li>
+              <div className="mt-auto pt-6 border-t border-border/50">
+                <div className="grid grid-cols-3 gap-4">
+                  {project.stats.map((stat, i) => (
+                    <div key={i}>
+                      <div className="text-lg font-bold text-foreground">{stat.value}</div>
+                      <div className="text-[10px] text-muted-foreground uppercase">{stat.label}</div>
+                    </div>
                   ))}
-                </ul>
-
-                <div className="pt-4">
-                  <button className="px-6 py-3 border border-white/20 hover:bg-white/5 rounded-lg text-white text-sm font-medium transition-colors">
-                    Learn More
-                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
