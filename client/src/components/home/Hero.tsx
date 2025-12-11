@@ -3,18 +3,18 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="bg-background pt-12 pb-16 lg:pt-24 lg:pb-32 border-b border-gray-200">
-      <div className="ibm-container">
+    <section className="bg-background pt-12 pb-16 lg:pt-24 lg:pb-32 border-b border-gray-200 hi-tech-grid overflow-hidden">
+      <div className="ibm-container relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-8 space-y-8">
-            <h1 className="text-foreground font-light leading-tight">
+            <h1 className="text-foreground font-light leading-tight animate-fade-in-up opacity-0" style={{ animationFillMode: 'forwards' }}>
               Integrating <span className="font-normal flowing-text">Quantum Intelligence</span> into critical infrastructure.
             </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground font-light max-w-3xl leading-relaxed">
+            <p className="text-xl lg:text-2xl text-muted-foreground font-light max-w-3xl leading-relaxed animate-fade-in-up opacity-0 delay-200" style={{ animationFillMode: 'forwards' }}>
               QuantaFONS delivers enterprise-grade AI security, biometrics, and structural health monitoring solutions powered by our proprietary Eli S1 model.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up opacity-0 delay-300" style={{ animationFillMode: 'forwards' }}>
               <Link href="/products">
                 <button className="ibm-btn-primary group">
                   <span>View products</span>
@@ -30,8 +30,8 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col justify-end">
-            <div className="bg-secondary p-6 h-full flex flex-col justify-between min-h-[240px]">
+          <div className="lg:col-span-4 flex flex-col justify-end animate-fade-in-right opacity-0 delay-400" style={{ animationFillMode: 'forwards' }}>
+            <div className="bg-secondary p-6 h-full flex flex-col justify-between min-h-[240px] hi-tech-card glow-on-hover">
               <div>
                 <h3 className="text-lg font-medium mb-3">Featured Innovation</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-6">

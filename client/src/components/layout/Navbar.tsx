@@ -4,7 +4,16 @@ import { Menu, X, Globe, User, Search, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Products", href: "/products" },
@@ -14,7 +23,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 transition-all duration-200 h-12`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-12 ${isScrolled ? 'navbar-scrolled' : 'bg-white border-b border-gray-200'}`}>
       <div className="flex items-center justify-between h-full px-4 lg:px-6 max-w-[1584px] mx-auto w-full">
         <div className="flex items-center h-full">
           <button 
