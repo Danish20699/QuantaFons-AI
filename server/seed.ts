@@ -11,7 +11,7 @@ async function seed() {
       category: "AI Security",
       tagline: "The unblinking eye of enterprise security.",
       description: "Q-Secure is not just a camera; it is a proactive security ecosystem. Leveraging edge-based neural networks, it identifies threats in real-time, distinguishing between routine activities and genuine security breaches with 99.9% accuracy.",
-      image: "/assets/stock_images/modern_cctv_security_f7448f49.jpg",
+      image: "/attached_assets/stock_images/modern_cctv_security_f7448f49.jpg",
       icon: "Shield"
     },
     {
@@ -20,7 +20,7 @@ async function seed() {
       category: "Identity Management",
       tagline: "Seamless access, absolute identity assurance.",
       description: "Q-ID revolutionizes access control by replacing cards and pins with your unique biological signature. Our 3D volumetric facial mapping technology works in total darkness and cannot be spoofed by photos or masks.",
-      image: "/assets/stock_images/facial_recognition_s_415500cb.jpg",
+      image: "/attached_assets/stock_images/facial_recognition_s_415500cb.jpg",
       icon: "ScanFace"
     },
     {
@@ -29,7 +29,7 @@ async function seed() {
       category: "Generative AI",
       tagline: "The world's first industrial-grade reasoning engine.",
       description: "Eli S1 is a proprietary Large Language Model optimized for scientific reasoning, code generation, and complex industrial logic. Unlike general-purpose models, Eli S1 is trained on verified technical datasets to minimize hallucinations in critical tasks.",
-      image: "/assets/stock_images/abstract_data_networ_7d12e022.jpg",
+      image: "/attached_assets/stock_images/abstract_data_networ_7d12e022.jpg",
       icon: "Brain"
     },
     {
@@ -38,7 +38,7 @@ async function seed() {
       category: "Healthcare",
       tagline: "Accelerating the cure through data.",
       description: "OncoAI utilizes deep learning to analyze the efficacy of chemotherapy and radiotherapy protocols on patient-specific stem cell cultures. It predicts treatment outcomes with high fidelity, reducing the need for trial-and-error medication.",
-      image: "/assets/stock_images/medical_laboratory_m_ce3d03b3.jpg",
+      image: "/attached_assets/stock_images/medical_laboratory_m_ce3d03b3.jpg",
       icon: "Activity"
     }
   ];
@@ -101,7 +101,7 @@ async function seed() {
       name: "Buildmore AI (Q-Build)",
       category: "Construction Tech",
       description: "A comprehensive AI ecosystem for the construction industry. Q-Build integrates IoT sensors, drone mapping, and predictive analytics to manage large-scale infrastructure projects, preventing delays and accidents before they happen.",
-      image: "/assets/stock_images/modern_construction__a0a3d1ca.jpg",
+      image: "/attached_assets/stock_images/modern_construction__a0a3d1ca.jpg",
       icon: "HardHat"
     },
     {
@@ -109,7 +109,7 @@ async function seed() {
       name: "Compact Quantum Processors",
       category: "Hardware Innovation",
       description: "Revolutionizing computing power with room-temperature quantum processors. Designed for edge deployment, bringing quantum capabilities to mobile and embedded systems without the need for cryogenic cooling.",
-      image: "/assets/stock_images/computer_processor_c_94aac89b.jpg",
+      image: "/attached_assets/stock_images/computer_processor_c_94aac89b.jpg",
       icon: "Cpu"
     },
     {
@@ -117,7 +117,7 @@ async function seed() {
       name: "Spacecraft Structural Health",
       category: "Aerospace",
       description: "Femtotesla magnetic wave tomography for non-invasive structural analysis of spacecraft hulls. This system detects micro-fractures and material fatigue in deep space environments, ensuring mission longevity.",
-      image: "/assets/stock_images/satellite_in_orbit_c_9dcf5d6d.jpg",
+      image: "/attached_assets/stock_images/satellite_in_orbit_c_9dcf5d6d.jpg",
       icon: "Satellite"
     }
   ];
