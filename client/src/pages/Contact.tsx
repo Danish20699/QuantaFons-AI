@@ -81,12 +81,12 @@ export default function Contact() {
 
           <div className={`lg:col-span-7 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '300ms' }}>
             {isSubmitted ? (
-              <div className="bg-secondary p-8 lg:p-12 border border-gray-200 hi-tech-card text-center">
+              <div className="bg-secondary p-8 lg:p-12 border border-gray-200 hi-tech-card text-center" data-testid="status-contact-success">
                 <div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center animate-scale-in">
                   <CheckCircle className="w-10 h-10 text-green-600" />
                 </div>
-                <h3 className="text-2xl font-light mb-4">Message Sent!</h3>
-                <p className="text-muted-foreground mb-8">
+                <h3 className="text-2xl font-light mb-4" data-testid="text-success-title">Message Sent!</h3>
+                <p className="text-muted-foreground mb-8" data-testid="text-success-description">
                   Thank you for reaching out. Our team will get back to you within 24 hours.
                 </p>
                 <button 
