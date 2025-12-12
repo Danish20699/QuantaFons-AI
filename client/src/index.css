@@ -344,6 +344,186 @@
     to { clip-path: inset(0 0 0 0); }
   }
 
+  /* Animated Background Effects */
+  .animated-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animated-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 600px 400px at 20% 30%, rgba(15, 98, 254, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 500px 300px at 80% 70%, rgba(8, 189, 186, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 400px 250px at 50% 50%, rgba(165, 110, 255, 0.04) 0%, transparent 60%);
+    animation: floatingGradient 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes floatingGradient {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(30px, -20px) scale(1.05);
+    }
+    50% {
+      transform: translate(-20px, 30px) scale(0.98);
+    }
+    75% {
+      transform: translate(-30px, -10px) scale(1.02);
+    }
+  }
+
+  /* Floating particles background */
+  .particles-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .particles-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(2px 2px at 10% 20%, rgba(15, 98, 254, 0.3), transparent),
+      radial-gradient(2px 2px at 30% 60%, rgba(8, 189, 186, 0.25), transparent),
+      radial-gradient(1.5px 1.5px at 50% 30%, rgba(165, 110, 255, 0.3), transparent),
+      radial-gradient(2px 2px at 70% 80%, rgba(15, 98, 254, 0.2), transparent),
+      radial-gradient(1.5px 1.5px at 85% 45%, rgba(8, 189, 186, 0.25), transparent),
+      radial-gradient(2px 2px at 15% 75%, rgba(165, 110, 255, 0.2), transparent),
+      radial-gradient(1px 1px at 40% 90%, rgba(15, 98, 254, 0.3), transparent),
+      radial-gradient(1.5px 1.5px at 60% 15%, rgba(8, 189, 186, 0.25), transparent),
+      radial-gradient(2px 2px at 90% 25%, rgba(165, 110, 255, 0.2), transparent),
+      radial-gradient(1px 1px at 5% 50%, rgba(15, 98, 254, 0.3), transparent);
+    animation: particleFloat 30s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes particleFloat {
+    0% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-30px) translateX(15px);
+    }
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+  }
+
+  /* Circuit lines background */
+  .circuit-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .circuit-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(0deg, transparent 24%, rgba(15, 98, 254, 0.03) 25%, rgba(15, 98, 254, 0.03) 26%, transparent 27%, transparent 74%, rgba(15, 98, 254, 0.03) 75%, rgba(15, 98, 254, 0.03) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(15, 98, 254, 0.03) 25%, rgba(15, 98, 254, 0.03) 26%, transparent 27%, transparent 74%, rgba(15, 98, 254, 0.03) 75%, rgba(15, 98, 254, 0.03) 76%, transparent 77%, transparent);
+    background-size: 80px 80px;
+    animation: circuitPulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes circuitPulse {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Flowing light beam */
+  .light-beam {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .light-beam::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(15, 98, 254, 0.08), transparent);
+    animation: lightSweep 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes lightSweep {
+    0%, 100% {
+      left: -100%;
+    }
+    50% {
+      left: 150%;
+    }
+  }
+
+  /* Glowing orbs */
+  .orbs-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .orbs-bg::before,
+  .orbs-bg::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orbs-bg::before {
+    width: 500px;
+    height: 500px;
+    background: rgba(15, 98, 254, 0.08);
+    top: -200px;
+    right: -100px;
+    animation: orbFloat1 15s ease-in-out infinite;
+  }
+
+  .orbs-bg::after {
+    width: 400px;
+    height: 400px;
+    background: rgba(8, 189, 186, 0.06);
+    bottom: -150px;
+    left: -100px;
+    animation: orbFloat2 18s ease-in-out infinite;
+  }
+
+  @keyframes orbFloat1 {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(-50px, 50px);
+    }
+  }
+
+  @keyframes orbFloat2 {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(50px, -50px);
+    }
+  }
+
   /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

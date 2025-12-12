@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="bg-background pt-12 pb-16 lg:pt-24 lg:pb-32 border-b border-gray-200 hi-tech-grid overflow-hidden">
+    <section className="bg-background pt-12 pb-16 lg:pt-24 lg:pb-32 border-b border-gray-200 animated-bg particles-bg overflow-hidden">
       <div className="ibm-container relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-8 space-y-8">
