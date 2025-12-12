@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 500, suffix: "+", label: "Enterprise Clients", description: "Trusted by Fortune 500 companies" },
-  { value: 99.9, suffix: "%", label: "System Uptime", description: "Industry-leading reliability" },
-  { value: 45, suffix: "+", label: "Countries Served", description: "Global infrastructure presence" },
-  { value: 2.5, suffix: "B+", label: "Data Points Secured", description: "Protected every day" },
+  { value: 15, suffix: "+", label: "Years of Innovation", description: "Pioneering quantum technology" },
+  { value: 1200, suffix: "+", label: "Research Publications", description: "Peer-reviewed scientific papers" },
+  { value: 98, suffix: "%", label: "Client Retention", description: "Long-term partnerships" },
+  { value: 50, suffix: "M+", label: "Lives Impacted", description: "Through healthcare solutions" },
 ];
 
 function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
