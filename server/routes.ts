@@ -1,11 +1,16 @@
-import type { Express } from "express";
+
+import express, { type Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import path from "path";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Serve attached_assets
+  app.use("/attached_assets", express.static(path.resolve(process.cwd(), "attached_assets")));
+
   app.get("/api/products", async (req, res) => {
     try {
       const products = await storage.getAllProducts();

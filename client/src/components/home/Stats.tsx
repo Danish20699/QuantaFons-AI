@@ -1,4 +1,6 @@
+
 import { useEffect, useRef, useState } from "react";
+import Hyperspeed from "./Hyperspeed";
 
 const stats = [
   { value: 3, suffix: "+", label: "Years of Innovation", description: "Pioneering quantum technology" },
@@ -16,7 +18,6 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
           const duration = 2000;
           const startTime = Date.now();
           const animate = () => {
@@ -42,9 +43,29 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
+
 export default function Stats() {
   return (
-    <section className="py-20 lg:py-32 bg-secondary circuit-bg">
+
+    <section className="py-20 lg:py-32 bg-secondary circuit-bg relative overflow-hidden">
+
+
+      {/* Hyperspeed Background Animation */}
+      <div className="absolute inset-0 opacity-60">
+        <Hyperspeed
+          effectOptions={{
+            speed: 2.0,
+            intensity: 0.6,
+            colors: {
+              background: '#000000',
+              roadColor: '#080808',
+              lines: '#FFFFFF',
+              speedLines: '#87CEEB'
+            }
+          }}
+        />
+      </div>
+      
       <div className="ibm-container relative z-10">
         <div className="text-center mb-16">
           <p className="text-sm text-primary font-medium tracking-wide uppercase mb-4" data-testid="stats-label">

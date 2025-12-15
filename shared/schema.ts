@@ -1,10 +1,11 @@
+
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer } from "drizzle-orm/pg-core";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+export const users = sqliteTable("users", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
 });
@@ -17,8 +18,8 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
-export const products = pgTable("products", {
-  id: varchar("id").primaryKey(),
+export const products = sqliteTable("products", {
+  id: text("id").primaryKey(),
   name: text("name").notNull(),
   category: text("category").notNull(),
   tagline: text("tagline").notNull(),
@@ -27,22 +28,22 @@ export const products = pgTable("products", {
   icon: text("icon").notNull(),
 });
 
-export const productSpecs = pgTable("product_specs", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  productId: varchar("product_id").notNull().references(() => products.id),
+export const productSpecs = sqliteTable("product_specs", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  productId: text("product_id").notNull().references(() => products.id),
   label: text("label").notNull(),
   value: text("value").notNull(),
 });
 
-export const productFeatures = pgTable("product_features", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  productId: varchar("product_id").notNull().references(() => products.id),
+export const productFeatures = sqliteTable("product_features", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  productId: text("product_id").notNull().references(() => products.id),
   feature: text("feature").notNull(),
   displayOrder: integer("display_order").notNull(),
 });
 
-export const projects = pgTable("projects", {
-  id: varchar("id").primaryKey(),
+export const projects = sqliteTable("projects", {
+  id: text("id").primaryKey(),
   name: text("name").notNull(),
   category: text("category").notNull(),
   description: text("description").notNull(),
@@ -50,15 +51,15 @@ export const projects = pgTable("projects", {
   icon: text("icon").notNull(),
 });
 
-export const projectStats = pgTable("project_stats", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  projectId: varchar("project_id").notNull().references(() => projects.id),
+export const projectStats = sqliteTable("project_stats", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  projectId: text("project_id").notNull().references(() => projects.id),
   label: text("label").notNull(),
   value: text("value").notNull(),
 });
 
-export const researchPapers = pgTable("research_papers", {
-  id: varchar("id").primaryKey(),
+export const researchPapers = sqliteTable("research_papers", {
+  id: text("id").primaryKey(),
   title: text("title").notNull(),
   authors: text("authors").notNull(),
   date: text("date").notNull(),
@@ -66,8 +67,8 @@ export const researchPapers = pgTable("research_papers", {
   abstract: text("abstract").notNull(),
 });
 
-export const team = pgTable("team", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+export const team = sqliteTable("team", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   name: text("name").notNull(),
   role: text("role").notNull(),
   bio: text("bio").notNull(),
