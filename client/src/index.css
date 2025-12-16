@@ -524,6 +524,44 @@
     }
   }
 
+  /* HyperSpeed heading background */
+  .hyperspeed-heading {
+    position: relative;
+    padding-inline: 1.5rem;
+  }
+
+  .hyperspeed-heading::before {
+    content: '';
+    position: absolute;
+    inset: 35% -40%;
+    background:
+      repeating-linear-gradient(
+        110deg,
+        rgba(15, 98, 254, 0.0) 0px,
+        rgba(15, 98, 254, 0.18) 2px,
+        rgba(8, 189, 186, 0.12) 4px,
+        transparent 7px
+      );
+    opacity: 0.9;
+    filter: blur(1px);
+    transform: translateX(-35%);
+    animation: hyperspeedSweep 2.2s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes hyperspeedSweep {
+    0% {
+      transform: translateX(-40%);
+    }
+    50% {
+      transform: translateX(35%);
+    }
+    100% {
+      transform: translateX(110%);
+    }
+  }
+
   /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

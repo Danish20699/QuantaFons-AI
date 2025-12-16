@@ -1,12 +1,12 @@
 const clients = [
-  { name: "Airbus", industry: "Aerospace" },
-  { name: "Siemens", industry: "Industrial" },
-  { name: "Philips", industry: "Healthcare" },
-  { name: "Thales", industry: "Defense" },
-  { name: "Schneider", industry: "Energy" },
-  { name: "Nokia", industry: "Telecom" },
-  { name: "SAP", industry: "Enterprise" },
-  { name: "Bosch", industry: "Automotive" },
+  { name: "HECPL", industry: "Construction" },
+  { name: "AABALIQA", industry: "Technology" },
+  { name: "KVPDA", industry: "PETORLIUM, PETROCHEMICAL, AND PETROPHYSICAL DATA ANALYSIS AND VISUALIZATION" },
+  { name: "LILY", industry: "HEALTHCARE,IRAN" },
+  { name: "PISCICULTURE", industry: "Website Development J&k Trout Feed Farm" },
+  { name: "AB CENTER", industry: "EDU TECH" },
+  { name: "BOOST+", industry: "AI POWRED TUTORING AND LEARNING" },
+  { name: "BLUEMARGIN", industry: "B2B SOFTWARE SOLUTIONS" },
 ];
 
 const testimonials = [
@@ -32,7 +32,11 @@ export default function ClientLogos() {
           <p className="text-sm text-primary font-medium tracking-wide uppercase mb-4" data-testid="clients-label">
             Trusted Partners
           </p>
-          <h2 className="mb-4" data-testid="clients-heading">Leading organizations rely on QuantaFONS</h2>
+          <div className="inline-block relative hyperspeed-heading">
+            <h2 className="mb-4 relative z-10" data-testid="clients-heading">
+              Leading organizations rely on QuantaFONS
+            </h2>
+          </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             From aerospace to healthcare, our solutions power innovation across industries
           </p>
