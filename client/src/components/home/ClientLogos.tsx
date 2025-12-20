@@ -1,26 +1,24 @@
 const clients = [
-  { name: "HECPL", industry: "Construction" },
-  { name: "AABALIQA", industry: "Technology" },
-  { name: "KVPDA", industry: "PETORLIUM, PETROCHEMICAL, AND PETROPHYSICAL DATA ANALYSIS AND VISUALIZATION" },
-  { name: "LILY", industry: "HEALTHCARE,IRAN" },
-  { name: "PISCICULTURE", industry: "Website Development J&k Trout Feed Farm" },
-  { name: "AB CENTER", industry: "EDU TECH" },
-  { name: "BOOST+", industry: "AI POWRED TUTORING AND LEARNING" },
-  { name: "BLUEMARGIN", industry: "B2B SOFTWARE SOLUTIONS" },
+  { name: "HECPL", industry: "Construction Company" },
+  { name: "ABALIQA", industry: "Technology Providers, USA" },
+  { name: "KVPDA", industry: "petorlium, petrochemical, and petrophysical data analysis and visualization" },
+  { name: "LILY", industry: "Healthcare and Hospitals, Iran" },
+  { name: "JKTROUTFEED", industry: "Pisciculture" },
+  { name: "ABC EDUTECH", industry: "Ai based Education Technologies" },
+  { name: "BOOST+", industry: "Ai powered tutoring solutoins for IGCSE" },
+  { name: "BLUMARGINS", industry: "Business Analysis and Software Solutions" },
 ];
 
 const testimonials = [
   {
     quote: "QuantaFONS transformed our security infrastructure. Their quantum-resistant encryption is years ahead of the competition.",
-    author: "Dr. Elena Vasquez",
-    role: "CTO, European Space Agency",
-    company: "ESA",
+    author: "Tanveer Ahmad",
+    role: "CEO, Abaliqa Technologies",
   },
   {
     quote: "The OncoAI platform has accelerated our drug discovery pipeline by 40%. It's revolutionizing how we approach cancer research.",
-    author: "Prof. James Chen",
-    role: "Director of Research",
-    company: "Johns Hopkins Oncology",
+    author: "Bilal Ahmad",
+    role: "CTO, Lily Healthcare and Hospitals",
   },
 ];
 
